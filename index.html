@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tetris Game</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Main Menu Screen -->
+        <div id="mainMenu" class="screen active">
+            <div class="menu-container">
+                <h1 class="game-title">TETRIS</h1>
+                <div class="menu-buttons">
+                    <button id="startGame" class="menu-button primary">Start Game</button>
+                    <button id="showSettings" class="menu-button">Settings</button>
+                    <button id="showHighScores" class="menu-button">High Scores</button>
+                    <button id="quitGame" class="menu-button">Quit</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Screen -->
+        <div id="settingsMenu" class="screen">
+            <div class="menu-container">
+                <h2>Settings</h2>
+                <div class="settings-container">
+                    <div class="setting-item">
+                        <label for="musicVolume">Music Volume:</label>
+                        <input type="range" id="musicVolume" min="0" max="100" value="50">
+                        <span id="musicVolumeValue">50%</span>
+                    </div>
+                    <div class="setting-item">
+                        <label for="sfxVolume">SFX Volume:</label>
+                        <input type="range" id="sfxVolume" min="0" max="100" value="70">
+                        <span id="sfxVolumeValue">70%</span>
+                    </div>
+                    <div class="setting-item">
+                        <label for="startingLevel">Starting Level:</label>
+                        <select id="startingLevel">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                </div>
+                <button id="backToMain" class="menu-button">Back</button>
+            </div>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="gameScreen" class="screen">
+            <div class="game-container">
+                <div class="game-info-left">
+                    <div class="info-panel">
+                        <h3>SCORE</h3>
+                        <div id="score" class="score-display">0</div>
+                    </div>
+                    <div class="info-panel">
+                        <h3>LEVEL</h3>
+                        <div id="level" class="level-display">1</div>
+                    </div>
+                    <div class="info-panel">
+                        <h3>LINES</h3>
+                        <div id="lines" class="lines-display">0</div>
+                    </div>
+                </div>
+
+                <div class="game-area">
+                    <canvas id="gameCanvas" width="300" height="600"></canvas>
+                    <div id="pauseOverlay" class="overlay">
+                        <div class="overlay-content">
+                            <h2>PAUSED</h2>
+                            <p>Press SPACE to resume</p>
+                            <button id="resumeGame" class="menu-button">Resume</button>
+                            <button id="backToMainFromPause" class="menu-button">Main Menu</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-info-right">
+                    <div class="info-panel">
+                        <h3>NEXT</h3>
+                        <canvas id="nextPieceCanvas" width="100" height="80"></canvas>
+                    </div>
+                    <div class="controls-info">
+                        <h3>CONTROLS</h3>
+                        <div class="control-item">
+                            <span>↑</span> Rotate
+                        </div>
+                        <div class="control-item">
+                            <span>↓</span> Soft Drop
+                        </div>
+                        <div class="control-item">
+                            <span>←→</span> Move
+                        </div>
+                        <div class="control-item">
+                            <span>SPACE</span> Hard Drop
+                        </div>
+                        <div class="control-item">
+                            <span>P</span> Pause
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Over Screen -->
+        <div id="gameOverScreen" class="screen">
+            <div class="menu-container">
+                <h2 class="game-over-title">GAME OVER</h2>
+                <div class="final-stats">
+                    <div class="stat">
+                        <span class="stat-label">Final Score:</span>
+                        <span id="finalScore" class="stat-value">0</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Level Reached:</span>
+                        <span id="finalLevel" class="stat-value">1</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-label">Lines Cleared:</span>
+                        <span id="finalLines" class="stat-value">0</span>
+                    </div>
+                </div>
+                <div class="menu-buttons">
+                    <button id="playAgain" class="menu-button primary">Play Again</button>
+                    <button id="backToMainFromGameOver" class="menu-button">Main Menu</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- High Scores Screen -->
+        <div id="highScoresScreen" class="screen">
+            <div class="menu-container">
+                <h2>High Scores</h2>
+                <div class="high-scores-list" id="highScoresList">
+                    <!-- High scores will be populated here -->
+                </div>
+                <button id="backToMainFromHighScores" class="menu-button">Back</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="tetris.js"></script>
+    <script src="game.js"></script>
+    <script src="renderer.js"></script>
+</body>
+</html>
